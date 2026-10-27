@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f4">
+  <meta name="description" content="Descubra a palavra do dia em até seis tentativas.">
+  <title>Palavra do Dia — jogo de palavras</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="a">
+  <a class="skip-link" href="#main">Pular para o jogo</a>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">P</span><span>palavra<span class="brand-light">do dia</span></span></div>
+    <nav aria-label="Navegação principal" class="nav-actions">
+      <button class="icon-button" id="helpBtn" aria-label="Como jogar" title="Como jogar">?</button>
+      <button class="icon-button" id="statsBtn" aria-label="Ver estatísticas" title="Estatísticas">▥</button>
+    </nav>
+  </header>
+  <main id="main" class="shell">
+    <section class="intro" id="homePanel">
+      <p class="eyebrow">DESAFIO DE HOJE <span id="todayLabel"></span></p>
+      <h1>Uma palavra.<br><span>Seis tentativas.</span></h1>
+      <p class="intro-copy">Descubra a palavra secreta usando as pistas de cada letra.</p>
+      <div class="theme-pill"><span aria-hidden="true">✦</span> Tema de hoje: <strong id="categoryLabel">Animais</strong></div>
+      <button class="primary-button" id="startBtn">Jogar agora <span aria-hidden="true">→</span></button>
+      <p class="small-note">Sem cadastro. Um desafio novo todos os dias.</p>
+    </section>
+
+    <section class="game-panel hidden" id="gamePanel" aria-label="Partida">
+      <div class="game-heading"><div><p class="eyebrow">TEMA DE HOJE</p><h2 id="gameCategory">Animais</h2></div><div class="tries-counter"><strong id="triesCount">0</strong><span>/ 6 tentativas</span></div></div>
+      <div id="board" class="board" role="group" aria-label="Tabuleiro de seis tentativas por cinco letras"></div>
+      <p id="statusMessage" class="status-message" aria-live="polite">Digite uma palavra de cinco letras.</p>
+      <div id="keyboard" class="keyboard" aria-label="Teclado virtual"></div>
+      <div class="game-footer"><button class="text-button" id="backBtn">← Início</button><button class="text-button" id="giveUpBtn">Ver instruções</button></div>
+    </section>
+
+    <section class="result-panel hidden" id="resultPanel" aria-live="polite">
+      <div class="result-icon" id="resultIcon" aria-hidden="true">✦</div>
+      <p class="eyebrow" id="resultEyebrow">DESAFIO CONCLUÍDO</p>
+      <h2 id="resultTitle">Muito bem!</h2>
+      <p id="resultCopy" class="result-copy"></p>
+      <div class="answer-card"><span>A PALAVRA ERA</span><strong id="answerWord">GATOS</strong></div>
+      <div class="result-actions"><button class="primary-button" id="shareBtn">Compartilhar resultado ↗</button><button class="secondary-button" id="resultStatsBtn">Ver estatísticas</button></div>
+      <p class="small-note">O próximo desafio chega amanhã.</p>
+    </section>
+
+    <section class="stats-panel hidden" id="statsPanel">
+      <div class="section-heading"><div><p class="eyebrow">SEU PROGRESSO</p><h2>Estatísticas</h2></div><button class="icon-button" id="closeStatsBtn" aria-label="Fechar estatísticas">×</button></div>
+      <div class="stats-grid"><div class="stat-card"><strong id="playedStat">0</strong><span>Partidas</span></div><div class="stat-card"><strong id="winStat">0</strong><span>Vitórias</span></div><div class="stat-card"><strong id="rateStat">0%</strong><span>Acertos</span></div><div class="stat-card"><strong id="streakStat">0</strong><span>Sequência atual</span></div></div>
+      <div class="streak-card"><span aria-hidden="true">✦</span><div><strong id="bestStreakStat">Melhor sequência: 0 dias</strong><p>Uma partida por dia ajuda a manter sua sequência.</p></div></div>
+      <button class="secondary-button full-width" id="statsBackBtn">Voltar ao jogo</button>
+    </section>
+
+    <section class="prototypes" aria-label="Escolha de protótipo visual">
+      <div class="prototype-title"><span>EXPERIMENTE OS ESTILOS</span><span class="prototype-line"></span></div>
+      <div class="prototype-options">
+        <button class="prototype-choice selected" data-theme-choice="a"><span class="swatches"><i></i><i></i><i></i></span><span><strong>01 · Acolhedor</strong><small>Suave e colorido</small></span><span class="check">✓</span></button>
+        <button class="prototype-choice" data-theme-choice="b"><span class="swatches"><i></i><i></i><i></i></span><span><strong>02 · Editorial</strong><small>Minimalista e elegante</small></span><span class="check">✓</span></button>
+        <button class="prototype-choice" data-theme-choice="c"><span class="swatches"><i></i><i></i><i></i></span><span><strong>03 · Divertido</strong><small>Cartões e energia</small></span><span class="check">✓</span></button>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>PALAVRA DO DIA</span><span>Feito para pensar brincando <span aria-hidden="true">✦</span></span></footer>
+
+  <dialog id="helpDialog" class="help-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="Fechar instruções">×</button></form>
+    <p class="eyebrow">COMO JOGAR</p><h2>Descubra a palavra secreta</h2>
+    <p>Você tem seis tentativas para encontrar uma palavra de cinco letras. Depois de cada palpite, as letras dão pistas:</p>
+    <div class="legend-row"><span class="legend-tile correct">A</span><span><strong>Na posição certa</strong><small>A letra está no lugar correto.</small></span></div>
+    <div class="legend-row"><span class="legend-tile present">R</span><span><strong>Está na palavra</strong><small>A letra aparece, mas em outro lugar.</small></span></div>
+    <div class="legend-row"><span class="legend-tile absent">S</span><span><strong>Não aparece</strong><small>Essa letra não está na palavra.</small></span></div>
+    <button class="primary-button full-width" id="dialogStartBtn">Entendi, vamos jogar</button>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
